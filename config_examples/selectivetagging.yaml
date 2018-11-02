@@ -1,0 +1,32 @@
+# example: only allow empty tags to be overwritten
+selectivetagging:
+  only_empty_tags: yes
+
+# example: only allow whitelisted tags to be overwritten
+selectivetagging:
+  whitelist_tags: artist album year label title
+
+# example: only allow whitelisted + empty tags to be overwritten
+selectivetagging:
+  only_empty_tags: yes
+  whitelist_tags: artist album year label title
+
+# example: do not allow blacklisted tags to be overwritten
+selectivetagging:
+  blacklist_tags: genre year
+
+# example: do not allow blacklisted tags to be overwritten
+# + non-blacklisted tags must be empty
+selectivetagging:
+  only_empty_tags: yes
+  blacklist_tags: genre year
+
+# bad example: attempting to both blacklist and whitelist tags
+# this will cause an error because it's not possible to do both
+# tasks at once by its very nature. in the example below, if we
+# only allow the whitelisted tags to be processed, the genre
+# tag will already be excluded from processing, so there is no
+# point to the blacklist.
+selectivetagging:
+  whitelist_tags: artist album year label title
+  blacklist_tags: genre
