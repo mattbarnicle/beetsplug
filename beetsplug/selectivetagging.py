@@ -46,13 +46,13 @@ class SelectiveTagging(BeetsPlugin):
     # set config defaults
     self.config.add({
       'only_empty_tags': False,
-      'whitelist_tags': '',
-      'blacklist_tags': ''
+      'whitelist_tags': [],
+      'blacklist_tags': []
     })
 
     self.is_only_empty_tags_enabled = self.config['only_empty_tags'].get()
-    self.is_whitelist_tags_enabled = (self.config['whitelist_tags'].get() != '')
-    self.is_blacklist_tags_enabled = (self.config['blacklist_tags'].get() != '')
+    self.is_whitelist_tags_enabled = (len(self.config['whitelist_tags'].as_str_seq()) != 0)
+    self.is_blacklist_tags_enabled = (len(self.config['blacklist_tags'].as_str_seq()) != 0)
 
     if self.is_whitelist_tags_enabled and self.is_blacklist_tags_enabled:
       print('You can only use whitelist_tags or blacklist_tags, not both')
@@ -132,7 +132,7 @@ class SelectiveTagging(BeetsPlugin):
     return not value
 
   def is_tag_whitelisted(self, tag):
-    return tag in self.config['whitelist_tags'].get().split()
+    return tag in self.config['whitelist_tags'].as_str_seq()
 
   def is_tag_blacklisted(self, tag):
-    return tag in self.config['blacklist_tags'].get().split()
+    return tag in self.config['blacklist_tags'].as_str_seq()
