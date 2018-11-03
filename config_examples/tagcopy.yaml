@@ -1,0 +1,12 @@
+# example: always copy the contents of the label tag to the composer tag
+# (useful for iTunes libraries that don't display the label tag)
+selectivetagging:
+  only_empty_tags: no
+  copy_tags: composer=label
+
+# example: conditionally copy the contents of the label tag to the composer tag
+# only when the composer tag is empty
+# only_empty_tags applies to all tag copy definitions, you can't apply on a per-tag basis
+selectivetagging:
+  only_empty_tags: yes
+  copy_tags: composer=label
